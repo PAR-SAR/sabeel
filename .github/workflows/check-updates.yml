@@ -1,0 +1,40 @@
+name: Check AI updates
+
+on:
+  schedule:
+    - cron: "0 4 * * 1"   # every Monday 04:00 UTC = 9:30 AM India time
+  workflow_dispatch:       # lets you run it any time from the Actions tab
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read release notes and compare with last week
+        run: python3 tools/check_updates.py
+
+      - name: Save snapshots
+        run: |
+          git config user.name "sabeel-bot"
+          git config user.email "sabeel-bot@users.noreply.github.com"
+          git add updates
+          git diff --cached --quiet || git commit -m "Update AI release-note snapshots"
+          git push
+
+      - name: Open an issue when something is new
+        if: hashFiles('updates/HAS_CHANGES') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "New AI updates: $(date +%Y-%m-%d)" \
+            --body-file updates/LATEST.md
