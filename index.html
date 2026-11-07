@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sabeel</title>
+  <meta name="description" content="Sabeel: one app for Claude and ChatGPT models, image generation and connectors, using your own API keys.">
+  <meta name="theme-color" content="#0E6655">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11.5l-8.1 8.1a5 5 0 01-7.1-7.1l8.5-8.5a3.3 3.3 0 014.7 4.7l-8.5 8.5a1.7 1.7 0 01-2.4-2.4l7.8-7.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lib" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"><rect x="22" y="22" width="56" height="56"/><rect x="22" y="22" width="56" height="56" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="15"/></g></symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Chats">
+    <div class="brand">
+      <svg class="brand-mark" aria-hidden="true"><use href="#i-star"/></svg>
+      <span class="wordmark">Sabeel</span>
+    </div>
+    <button class="btn btn-primary new-chat" id="newChat" type="button"><svg><use href="#i-plus"/></svg>New chat</button>
+    <label class="search">
+      <span class="sr-only">Search chats</span>
+      <input id="search" type="search" placeholder="Search chats" autocomplete="off">
+    </label>
+    <nav class="chat-list" id="chatList"></nav>
+    <div class="side-foot">
+      <button class="side-link" type="button" data-view="library"><svg><use href="#i-lib"/></svg>Library</button>
+      <button class="side-link" type="button" data-view="settings"><svg><use href="#i-gear"/></svg>Settings</button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open chats"><svg><use href="#i-menu"/></svg></button>
+      <h1 class="top-title" id="topTitle">New chat</h1>
+      <div class="top-actions" id="chatActions">
+        <button class="icon-btn" id="renameBtn" type="button" aria-label="Rename chat" title="Rename chat"><svg><use href="#i-edit"/></svg></button>
+        <button class="icon-btn" id="exportBtn" type="button" aria-label="Download chat as Markdown" title="Download chat as Markdown"><svg><use href="#i-down"/></svg></button>
+        <button class="icon-btn" id="deleteBtn" type="button" aria-label="Delete chat" title="Delete chat"><svg><use href="#i-trash"/></svg></button>
+      </div>
+    </header>
+
+    <!-- Chat -->
+    <section class="view view-chat" id="view-chat">
+      <div class="scroller" id="scroller">
+        <div class="messages" id="messages"></div>
+      </div>
+      <form class="composer" id="composer" autocomplete="off">
+        <div class="attach-row" id="attachRow" hidden></div>
+        <label class="sr-only" for="input">Message</label>
+        <textarea id="input" rows="1" placeholder="Message Sabeel"></textarea>
+        <div class="composer-bar">
+          <div class="bar-left">
+            <div class="mode-switch" role="tablist" aria-label="Mode">
+              <button type="button" role="tab" data-mode="chat" aria-selected="true">Chat</button>
+              <button type="button" role="tab" data-mode="image" aria-selected="false">Image</button>
+            </div>
+            <label class="sr-only" for="modelSelect">Model</label>
+            <select id="modelSelect" class="model-select"></select>
+            <span class="image-opts" id="imageOpts" hidden>
+              <label class="sr-only" for="imgSize">Image size</label>
+              <select id="imgSize">
+                <option value="1024x1024">Square</option>
+                <option value="1536x1024">Landscape</option>
+                <option value="1024x1536">Portrait</option>
+                <option value="auto">Auto size</option>
+              </select>
+              <label class="sr-only" for="imgQuality">Image quality</label>
+              <select id="imgQuality">
+                <option value="auto">Auto quality</option>
+                <option value="low">Low (cheapest)</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </span>
+          </div>
+          <div class="bar-right">
+            <label class="chip-toggle" id="webWrap" title="Let the model search the web"><input type="checkbox" id="webToggle"><span>Web</span></label>
+            <label class="chip-toggle accent" id="toolsWrap" title="Use your connectors (MCP servers)"><input type="checkbox" id="toolsToggle"><span>Connectors</span></label>
+            <button class="icon-btn" id="attachBtn" type="button" aria-label="Attach files" title="Attach images, PDFs or text files"><svg><use href="#i-clip"/></svg></button>
+            <input type="file" id="fileInput" multiple hidden accept="image/*,application/pdf,text/*,.md,.csv,.json,.js,.ts,.py,.php,.html,.css,.xml,.yaml,.yml,.sql">
+            <button class="icon-btn" id="micBtn" type="button" aria-label="Speak your message" title="Speak your message" hidden><svg><use href="#i-mic"/></svg></button>
+            <button class="send-btn" id="sendBtn" type="submit" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Library -->
+    <section class="view view-page" id="view-library" hidden>
+      <div class="page">
+        <h2>Library</h2>
+        <p class="lead">Every image you generate and every file you attach is saved here on this device.</p>
+        <div class="seg" id="libFilter" role="tablist" aria-label="Filter">
+          <button type="button" data-f="all" aria-selected="true">All</button>
+          <button type="button" data-f="generated" aria-selected="false">Generated images</button>
+          <button type="button" data-f="upload" aria-selected="false">Uploads</button>
+        </div>
+        <div class="lib-grid" id="libGrid"></div>
+        <p class="storage-note" id="storageNote"></p>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section class="view view-page" id="view-settings" hidden>
+      <div class="page">
+        <h2>Settings</h2>
+
+        <div class="card" id="setupCard">
+          <h3>API keys</h3>
+          <p class="hint">Keys are saved only on this device. You pay Anthropic and OpenAI directly for what you use.</p>
+          <label class="field"><span>Anthropic key (for Claude models)</span>
+            <input id="keyAnthropic" type="password" placeholder="sk-ant-..." autocomplete="off" spellcheck="false"></label>
+          <label class="field"><span>OpenAI key (for ChatGPT models and images)</span>
+            <input id="keyOpenAI" type="password" placeholder="sk-..." autocomplete="off" spellcheck="false"></label>
+          <div class="row">
+            <button class="btn btn-primary" id="saveKeys" type="button">Save keys and load models</button>
+            <a class="btn" href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener">Get Anthropic key</a>
+            <a class="btn" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">Get OpenAI key</a>
+          </div>
+          <ul class="status-list" id="keyStatus"></ul>
+        </div>
+
+        <div class="card">
+          <h3>How Sabeel should answer</h3>
+          <label class="field"><span>Custom instructions (sent with every chat)</span>
+            <textarea id="sysPrompt" rows="4" placeholder="Example: Reply in simple Roman English. Keep answers practical and short."></textarea></label>
+          <div class="grid2">
+            <label class="field"><span>Max answer length (tokens)</span>
+              <input id="maxTokens" type="number" min="256" max="128000" step="256"></label>
+            <label class="field"><span>Voice typing language</span>
+              <select id="voiceLang">
+                <option value="en-IN">English (India)</option>
+                <option value="hi-IN">Hindi</option>
+                <option value="ur-IN">Urdu (India)</option>
+                <option value="ur-PK">Urdu (Pakistan)</option>
+                <option value="te-IN">Telugu</option>
+                <option value="ar-SA">Arabic</option>
+              </select></label>
+            <label class="field"><span>Theme</span>
+              <select id="themeSel">
+                <option value="auto">Match device</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select></label>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Connectors (MCP servers)</h3>
+          <p class="hint">Add a remote MCP server by its https URL. Turn on <b>Connectors</b> in the chat box to let the model use it. The model runs tools without asking, so only add servers you trust.</p>
+          <div class="grid3">
+            <label class="field"><span>Name</span><input id="connName" placeholder="My website"></label>
+            <label class="field"><span>Server URL</span><input id="connUrl" placeholder="https://example.com/mcp" spellcheck="false"></label>
+            <label class="field"><span>Access token (optional)</span><input id="connToken" type="password" autocomplete="off" spellcheck="false"></label>
+          </div>
+          <button class="btn" id="addConn" type="button">Add connector</button>
+          <ul class="conn-list" id="connList"></ul>
+        </div>
+
+        <div class="card">
+          <h3>Usage this month</h3>
+          <p class="hint">Counted on this device. For the exact bill, open your provider's billing page.</p>
+          <div class="table-wrap"><table class="usage" id="usageTable"></table></div>
+          <div class="row">
+            <a class="btn" href="https://platform.claude.com/settings/billing" target="_blank" rel="noopener">Anthropic billing</a>
+            <a class="btn" href="https://platform.openai.com/usage" target="_blank" rel="noopener">OpenAI usage</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Backup and move to another device</h3>
+          <p class="hint">Download everything as one file, then import it on your phone or laptop.</p>
+          <label class="check"><input type="checkbox" id="exportKeys"> Include my API keys in the backup file</label>
+          <div class="row">
+            <button class="btn" id="exportAll" type="button">Download backup</button>
+            <button class="btn" id="importBtn" type="button">Import backup</button>
+            <input type="file" id="importFile" accept="application/json,.json" hidden>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>App</h3>
+          <div class="row">
+            <button class="btn btn-primary" id="installBtn" type="button" hidden>Install Sabeel on this device</button>
+            <button class="btn btn-danger" id="wipeBtn" type="button">Delete all data on this device</button>
+          </div>
+          <p class="hint" id="appVersion"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog class="dlg" id="previewDlg">
+  <div class="dlg-head">
+    <strong id="dlgTitle">Preview</strong>
+    <div class="row">
+      <button class="btn" id="dlgDownload" type="button">Download</button>
+      <button class="btn" id="dlgOpenChat" type="button">Open chat</button>
+      <button class="btn btn-danger" id="dlgDelete" type="button">Delete</button>
+      <button class="btn" id="dlgClose" type="button">Close</button>
+    </div>
+  </div>
+  <div class="dlg-body" id="dlgBody"></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="vendor/marked.umd.js"></script>
+<script src="vendor/purify.min.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

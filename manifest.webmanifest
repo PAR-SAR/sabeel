@@ -1,0 +1,16 @@
+{
+  "name": "Sabeel",
+  "short_name": "Sabeel",
+  "description": "Claude and ChatGPT models, image generation and connectors in one app, using your own API keys.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2F4F3",
+  "theme_color": "#0E6655",
+  "orientation": "any",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
