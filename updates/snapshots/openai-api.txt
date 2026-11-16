@@ -3,9 +3,9 @@ The latest features and updates to the OpenAI API.
 Upcoming deprecations are listed on the [deprecations page].
 November, 2026
 Feature · Model: gpt-6-cyber
-Use [GPT-6-Cyber] to investigate vulnerabilities, reproduce them in an authorized test environment, and verify fixes. See [Daybreak setup] before sending your first request.
+Use [GPT-6 Cyber] to investigate vulnerabilities, reproduce them in an authorized test environment, and verify fixes. See [Daybreak setup] before sending your first request.
 Feature · Model: gpt-image-2.6-sunburst · Model: gpt-image-2.6-flare · API: v1/images/generations · API: v1/images/edits
-Released [GPT-Image-2.6 Sunburst] and [GPT-Image-2.6 Flare] for image generation and editing, with adjustable complexity, SVG generation, and animated GIF generation. Added markup-guided editing for supported GPT Image 2.5 and 2.6 models.
+Released [GPT-Image-2.6 Sunburst] and [GPT-Image-2.6 Flare] for image generation and editing, with adjustable complexity, SVG generation, and animated GIF generation. Added markup-guided editing for supported GPT-Image-2.5 and GPT-Image-2.6 models.
 See the [image generation guide].
 Feature · Model: gpt-live-1 · API: v1/live/sessions
 Outbound SIP calling is now available to all organizations through the Live API. Connect GPT-Live to a phone number through your SIP provider. See the [SIP guide].
@@ -71,13 +71,13 @@ You can now set expiration dates when creating project API keys. Administrators 
 Released the [Agents API] in public beta. Build agents with a managed Codex harness while OpenAI handles session orchestration, context compaction, and recovery.
 Use durable sessions to continue work across turns, stream progress, and connect your own tools and MCP servers. Run agents in OpenAI-hosted sandboxes or connect a sandbox from your own infrastructure or a supported provider.
 Start with the [Agents API quickstart].
-[GPT-Live 1] is now generally available in the API. Build full-duplex voice conversations that can continue while a backend model or agent handles reasoning and tools.
+[GPT-Live-1] is now generally available in the API. Build full-duplex voice conversations that can continue while a backend model or agent handles reasoning and tools.
 Use Responses delegation with an OpenAI model, or client delegation to connect your own backend. Voice sessions cost $0.05 per minute, billed per second; backend model and tool usage is charged separately.
 Start with [GPT-Live], [prompting], and [migration guidance]. See [pricing] for details.
 [Prompt Cache Diagnostics] is now generally available in the Responses API for GPT-5.6 and later supported models.
 Compare cache reuse against a previous response, identify reasons for cache misses, and follow troubleshooting guidance to improve cache reuse.
 Feature · Model: gpt-image-2.5-sunburst · Model: gpt-image-2.5-flare · API: v1/images · API: v1/responses
-Released [GPT Image 2.5 Sunburst] and [GPT Image 2.5 Flare] for image generation and editing through the Image API and the Responses API image generation tool.
+Released [GPT-Image-2.5 Sunburst] and [GPT-Image-2.5 Flare] for image generation and editing through the Image API and the Responses API image generation tool.
 Use Sunburst for workflows where editing precision matters most, or Flare for fast, high-quality everyday image generation. Both models support the new `xhigh` and `max` quality settings and use GPT Image 2 token rates. See the [image generation guide] and [pricing].
 Feature · Model: gpt-rosalind-research
 GPT-Rosalind (`gpt-rosalind-research`) is now generally available through the [trusted-access program] for approved internal life sciences research.
@@ -124,7 +124,7 @@ We're also introducing [Fast mode] in the API, which replaces our Priority Proce
 Released the official [OpenAI Terraform provider] for managing OpenAI API Platform resources as infrastructure as code.
 Provision and manage projects, users, groups, roles, access assignments, service accounts, certificates, invitations, and project-level rate limits. Use standard Terraform workflows to review and apply changes, import existing resources, and detect and reconcile configuration drift. Install the provider from the [Terraform Registry].
 Feature · Model: gpt-transcribe · Model: gpt-live-transcribe · API: v1/audio/transcriptions · API: v1/realtime
-Released [GPT Transcribe] for accurate file transcription and final transcripts of committed Realtime turns, along with [GPT Live Transcribe] for low-latency streaming transcription.
+Released [GPT-Transcribe] for accurate file transcription and final transcripts of committed Realtime turns, along with [GPT-Live-Transcribe] for low-latency streaming transcription.
 Both models support free-form transcription context, keyword hints, and multiple expected input languages. Compare supported outputs and workflows in the [transcription guide].
 Added hard spend limits for organizations and projects on the OpenAI API platform. Set a monthly cap that causes affected API requests to return a `429` error when tracked spend reaches the limit. Use spend alerts for notification before traffic is interrupted. Read more in the [spend limits guide].
 Feature · Model: gpt-5.6-sol · Model: gpt-5.6-terra · Model: gpt-5.6-luna · API: v1/responses · API: v1/chat/completions · API: v1/batch
@@ -268,7 +268,7 @@ Released [Enterprise Key Management (EKM)]. Enterprise Key Management (EKM) allo
 Released [UK data residency].
 Feature · Model: gpt-5-pro · Model: gpt-realtime-mini · Model: gpt-audio-mini · Model: gpt-image-1-mini · Model: sora-2 · Model: sora-2-pro · API: v1/responses · API: v1/batch · API: v1/chat/completions · API: v1/videos · API: v1/realtime · API: v1/images/generations
 Released several new features at [OpenAI DevDay]:
-Released [GPT-5 Pro], a version of [GPT-5] that uses more compute to think harder and provide consistently better answers.
+Released [GPT-5 pro], a version of [GPT-5] that uses more compute to think harder and provide consistently better answers.
 Released [GPT-Realtime mini] and [gpt-audio-mini] for more cost-efficient speech to speech performance.
 Released [gpt-image-1-mini] for more cost-efficient image generation and editing.
 Launched [v1/videos] for rich, detailed, and dynamic video generation and remixing with our latest [Sora 2] and [Sora 2 Pro] models.
@@ -422,7 +422,7 @@ Added [`logprobs` and `top_logprobs` parameters] to the Chat Completions API
 Changed [function parameters] argument on a tool call to be optional
 November, 2023
 Released [OpenAI Deno SDK]
-Released [GPT-4 Turbo Preview], [updated GPT-3.5 Turbo], [GPT-4 Turbo with Vision], [Assistants API], [DALL·E 3 in the API], and [text-to-speech API]
+Released [GPT-4 Turbo preview], [updated GPT-3.5 Turbo], [GPT-4 Turbo with Vision], [Assistants API], [DALL·E 3 in the API], and [text-to-speech API]
 Deprecated the Chat Completions `functions` parameter [in favor of `tools`]
 Released [OpenAI Python SDK V1.0]
 October, 2023

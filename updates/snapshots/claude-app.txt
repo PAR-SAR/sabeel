@@ -11,6 +11,8 @@ Claude for Education
 Privacy and legal
 Amazon Bedrock
 November 2026
+November 12, 2026
+Claude Meetings is rolling out in beta on Team and Enterprise plans in Claude and Claude Desktop. You can add Claude to a Google Meet call as a visible participant that takes notes, answers questions, and builds artifacts, such as docs, whiteboards, and slides, during the call. For more information, see Use Claude Meetings.
 November 6, 2026
 Track spend by cost code with project tags (beta)
 Eligible Enterprise organizations can now tag projects with the codes they already use, like a charge code or client-matter number, and see most spend in those projects by tag. This feature is available in beta. For more information, see Track spend by cost code with project tags.
@@ -303,8 +305,8 @@ Note: Refer to our docs for historical release notes.
 Did this answer your question?
 Disappointed ReactionNeutral ReactionSmiley Reaction
 Related Articles
-How up-to-date is Claude's training data?
 How large is the context window on paid Claude plans?
 Claude Code model configuration
-Why Claude switched models in your conversation with Fable 5 or Fable 5.1
+Why Claude switched models in your conversation with Opus 5 or Opus 5.5
 How Claude marks AI-generated content
+Preserved thinking: changing how the Messages API handles thinking blocks to protect against distillation
