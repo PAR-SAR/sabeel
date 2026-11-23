@@ -1,56 +1,98 @@
-# AI updates check: 2026-11-16
+# AI updates check: 2026-11-23
 
 ## ChatGPT app
 
-Couldn't read this page this time. It will be tried again next run.
+First run: saved a starting copy of [https://help.openai.com/en/articles/6825453-chatgpt-release-notes](https://help.openai.com/en/articles/6825453-chatgpt-release-notes). Changes will show from next run.
 
 ## Claude app
 
 Source: https://support.claude.com/en/articles/12138966-release-notes
 
-- November 12, 2026
-- Claude Meetings is rolling out in beta on Team and Enterprise plans in Claude and Claude Desktop. You can add Claude to a Google Meet call as a visible participant that takes notes, answers questions, and builds artifacts, such as docs, whiteboards, and slides, during the call. For more information, see Use Claude Meetings.
-- Why Claude switched models in your conversation with Opus 5 or Opus 5.5
-- Preserved thinking: changing how the Messages API handles thinking blocks to protect against distillation
+- November 20, 2026
+- A refreshed look for Claude Mobile
+- A refreshed look for Claude Mobile is rolling out gradually, starting with Claude for iOS. Your chats, projects, and plan stay the same. There's nothing to turn on. Keep your app updated, and note that the new look needs iOS 26 or later.
+- Computer use (beta) for Team and Enterprise plans
+- Computer use lets Claude see a user's screen and work in the desktop apps they allow. It works in the new Claude experience in Claude Desktop, and from Claude on the web and Claude Mobile where Computer access is on. It's now available in beta on Team and Enterprise plans, and is rolling out to organizations gradually. For more information, see Set up computer use for Team and Enterprise plans.
+- November 17, 2026
+- Choose a release channel in Claude Desktop
+- You can now use a release channel to set which version of Claude Desktop you get when the app updates. Stable stays the default and gets new versions less often, after more testing. Latest gets a new version about once a day, so fixes and new features reach you sooner. For more information, see Choose a release channel.
+- Add Claude to your meetings
+- How up-to-date is Claude's training data?
+- Organize your tasks with projects in Claude Cowork
+- Enable US-only inference for your organization
 
 ## Claude API
 
 Source: https://platform.claude.com/docs/en/release-notes/overview.md
 
-- November 12, 2026
-- We’ve launched [self-hosted Claude Managed Agents]. You run the whole Managed Agents service, not only [self-hosted sandboxes], on your own infrastructure, and you store agents, sessions, and session history there. The server sends model requests to the provider that you choose, which is Anthropic by default. To request access, contact your Anthropic account team.
-- November 9, 2026
-- We’ve launched **Claude Fable 5.2** (`claude-fable-5-2`), built for demanding reasoning and long-horizon agentic work. **Claude Mythos 5.2** (`claude-mythos-5-2`) offers the same capabilities only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program]. Both models have a [1M token context window], 128k max output tokens, and always-on [adaptive thinking]. They cost $8 USD per MTok of input and $40 USD per MTok of output (Claude Fable 5.1 and Claude Mythos 5.1 cost $10 USD per MTok of input and $50 USD per MTok of output). Claude Fable 5.2 is available on the Claude API, [Amazon Bedrock (`bedrock-runtime`)], [Claude Platform on AWS], [Claude Models on Google Cloud (Anthropic managed)], [Claude Models on Google Cloud (Google managed)], and [Claude in Microsoft Foundry]. See [What’s new in Claude Fable 5.2] for API changes and migration guidance. For model-specific prompting patterns, see [Prompting Claude Fable 5.2].
-- Claude Fable 5.2 and Claude Mythos 5.2 enforce the [prefix check] for every account, whatever its age. Claude Fable 5.1 returns the error by default on accounts created on or after August 31, 2026 (see [When `prefix_mismatch_behavior` is unset]). If your code edits the `system` prompt, `tools`, or an earlier message and then sends back a Claude Fable 5.2 or Claude Mythos 5.2 thinking block from a later turn, the request returns a 400 error. Before you switch, [check whether your code edits the prefix].
-- Claude Fable 5.2 and Claude Mythos 5.2 read other models’ thinking blocks on the Claude API and Claude Models on Google Cloud (Google managed). So on those platforms, a conversation that moves onto either model keeps its reasoning. The other models include Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5.
-- No other model reads thinking blocks from Claude Fable 5.2 or Claude Mythos 5.2. When a conversation moves from either one to a model outside this pair, the API drops those blocks. That includes a move to Claude Opus 5.5 or Claude Fable 5.1. The request still succeeds. See [Switching models mid-conversation].
-- Claude Fable 5.2 and Claude Mythos 5.2 support computer use through the `computer_toolset_20260801` toolset. A request that declares the earlier `computer_20251124` tool returns a 400 error on every platform except Amazon Bedrock, where the earlier tool still works. See [Migrate from `computer_20251124`].
-- With the [advisor tool], which is in beta, a Claude Fable 5.2 or Claude Mythos 5.2 executor accepts only Claude Fable 5.2 or Claude Mythos 5.2 as its advisor. Any other advisor returns a 400 error, so set the advisor’s `model` to one of these two models when you move an executor to them. Every executor model accepts Claude Fable 5.2 as its advisor. See [Model compatibility].
-- Both models require 30-day data retention, like Claude Fable 5.1 and Claude Mythos 5.1. They aren’t available under zero data retention unless expressly authorized by Anthropic. See [Model-specific data retention requirements].
-- Thinking blocks that Claude Fable 5.2 and Claude Mythos 5.2 produce work only in the account that produced them, or in an account linked to it. See [Preserved thinking].
-- [Dreams] (research preview) now supports Claude Fable 5.2. See [Supported models].
-- We’ve launched [fast mode] for Claude Fable 5.2 in Messages API requests on the Claude API. Fast mode delivers up to 2.5x higher output tokens per second, at $16 USD per MTok of input and $80 USD per MTok of output. Set `speed: "fast"` on your request, with no beta header.
-- The [Compliance API] now includes Security posture data, in beta for Claude Enterprise organizations. The [Activity Feed] records changes to attestations on the **Security posture** page in claude.ai **Organization settings**. The `GET /v1/compliance/organizations/{organization_id}/security_posture` endpoint returns an organization’s current Security posture results. See [Security posture in the Compliance API].
-- We’ve launched **Claude Fable 5.1** (`claude-fable-5-1`), the successor to Claude Fable 5 for long-running agentic coding, knowledge work, and research. For Project Glasswing participants, we’ve also launched **Claude Mythos 5.1** (`claude-mythos-5-1`). Both models support a [1M token context window] by default, 128k max output tokens, and always-on [adaptive thinking]. They cost $10 / $50 USD per MTok, the same as Claude Fable 5, with cache reads cut to $0.25 USD per MTok. Claude Fable 5.1 is available on the Claude API, [Claude in Amazon Bedrock], and [Claude Platform on AWS]. It’s also on [Claude Models on Google Cloud (Google managed)] and [Claude in Microsoft Foundry]. See [Claude Fable 5.1] for specifications.
-- We’ve launched **Claude Opus 5** (`claude-opus-5`), a step-change improvement over Claude Opus 4.8. Claude Opus 5 supports a [1M token context window] (both the default and the maximum), 128k max output tokens, and [thinking] on by default, at $5 / $25 USD per MTok, the same pricing as Claude Opus 4.8. It’s available on the Claude API, [Claude in Amazon Bedrock], [Claude Platform on AWS], [Claude Models on Google Cloud (Google managed)], and [Claude in Microsoft Foundry]. See [Claude Opus 5] and the [models overview] for complete specs.
-- On Claude Opus 5, disabling thinking is allowed only at effort `high` or below: `thinking: {"type": "disabled"}` with effort `xhigh` or `max` returns a 400 error, a breaking change from Claude Opus 4.8. See [Effort with thinking].
-- We’ve launched **Claude Sonnet 5** (`claude-sonnet-5`), the next generation of our Sonnet model family, at introductory pricing of $2 / $10 USD per MTok (made the standard price on August 10, 2026). Claude Sonnet 5 supports a [1M token context window], 128k max output tokens, and the same set of tools and platform features as Claude Sonnet 4.6, except [Priority Tier], which is not available on Claude Sonnet 5. Three behavior changes apply when migrating: [adaptive thinking] is now on by default; manual extended thinking (`thinking: {type: "enabled", budget_tokens: N}`) is removed and returns a 400 error (it was deprecated on Sonnet 4.6); and setting sampling parameters (`temperature`, `top_p`, `top_k`) to non-default values returns a 400 error. Claude Sonnet 5 also uses a new tokenizer that produces approximately 30% more tokens for the same text. The exact increase depends on the content and workload shape. See [Claude Sonnet 5] for details. For behavioral differences and model-specific prompting patterns, see [Prompting Claude Sonnet 5].
+- November 17, 2026
+- We’ve launched [Linked billing] in beta with the `user-profiles-billing-2026-10-01` beta header. Your customers can now pay for the Claude usage in your app through their own Claude organization. Once a customer links their organization, set `billing_policy` on each `/v1/messages` or `/v1/chat/completions` request to choose who pays. In the Claude Console, customers can set a spend cap for your app or unlink your app. Linked billing works for customers whose organization pays Anthropic directly for API usage.
+- November 16, 2026
+- Text generated by Claude Opus 4.6, Claude Opus 4.5, Claude Sonnet 4.5, and Claude Haiku 4.5 carries Anthropic’s text watermark on supported platforms. [How Claude marks AI-generated content] lists those platforms. If a request to one of these models sets `temperature`, `top_p`, or `top_k` to a non-default value, the text might not carry the watermark. See [Text watermark].
+- We’ve added two event types to [organization webhooks], which are in beta. We send `external_key.failed` when your key management service keeps refusing a customer-managed encryption key, and `external_key.recovered` when the key works again.
+- Memory for Claude Managed Agents is now available in beta under the standard `managed-agents-2026-04-01` header. See [Using agent memory] for the full integration guide.
+- We’ve [launched Claude Opus 4.7], our most capable model for complex reasoning and agentic coding, at the same $5 / $25 USD per MTok pricing as Claude Opus 4.6. See [Claude Opus 4.7] for its specifications. Opus 4.7 includes an updated tokenizer and API breaking changes versus Opus 4.6; see [Migration guides] before upgrading.
+- The [Messages API] is now available on Amazon Bedrock in research preview. The new Claude in Amazon Bedrock endpoint at `/anthropic/v1/messages` uses the same request shape as the first-party Claude API and runs on AWS-managed infrastructure with zero operator access. It’s available in `us-east-1`. Contact your Anthropic account executive to request access. Learn more in [Claude in Amazon Bedrock (`bedrock-mantle`)].
+- We’ve launched **automatic caching** for the Messages API. Add a single `cache_control` field to your request body and the system automatically caches the last cacheable block, moving the cache point forward as conversations grow. No manual breakpoint management required. Works alongside existing block-level cache control for fine-grained optimization. Available on the Claude API and Microsoft Foundry. Learn more in [Automatic caching].
+- We’ve [launched Claude Sonnet 4.6], our latest balanced model combining speed and intelligence for everyday tasks. Sonnet 4.6 delivers improved agentic search performance while consuming fewer tokens. Sonnet 4.6 supports [extended thinking] and a [1M token context window], which is in beta. See [Models overview] for details.
+- We’ve launched [fast mode] in research preview for Claude Opus 4.6, providing significantly faster output token generation through the `speed` parameter. Fast mode is up to 2.5x as fast at premium pricing. Interested customers should join the [fast mode waitlist].
+- We’ve [launched Claude Opus 4.6], our most intelligent model for complex agentic tasks and long-horizon work. For Opus 4.6, we recommend [adaptive thinking] (`thinking: {type: "adaptive"}`); manual thinking (`type: "enabled"` with `budget_tokens`) is deprecated. Opus 4.6 does not support prefilling assistant messages. Learn more in [Claude Opus 4.6].
+- We’ve launched the [tool search tool] in beta, enabling Claude to dynamically discover and load tools on demand from large tool catalogs.
+- Anthropic-managed Skills:** Prebuilt Skills for working with PowerPoint (.pptx), Excel (.xlsx), Word (.docx), and PDF files.
+- Custom Skills:** Upload your own Skills through the Skills API (`/v1/skills` endpoints) to package domain expertise and organizational workflows.
+- Skills require the [code execution tool] to be enabled.
+- Learn more in [Agent Skills] and the [Create Skill] API reference.
+- We’ve launched [Claude Sonnet 4.5], our best model for complex agents and coding, with the highest intelligence across most tasks. Learn more in [Models overview].
+- We’ve introduced [global endpoint pricing] for Amazon Bedrock and Vertex AI. Claude API pricing is unaffected.
+- We’ve introduced a new stop reason `model_context_window_exceeded` that allows you to request the maximum possible tokens without calculating input size. Learn more in [Stop reasons and fallback].
+- Anthropic Console ([console.anthropic.com]) → Claude Console ([platform.claude.com]). The Claude Console will be available at both URLs until January 12, 2026. After that date, [console.anthropic.com] will automatically redirect to [platform.claude.com].
+- Anthropic Docs ([docs.anthropic.com]) → Claude Docs ([docs.claude.com]).
+- Anthropic Help Center ([support.anthropic.com]) → Claude Help Center ([support.claude.com]).
+- We’ve launched the web fetch tool in beta, allowing Claude to retrieve full content from specified webpages and PDF documents. Learn more in [Web fetch tool].
+- We launched the [C# SDK] in beta.
+- We’ve launched v2 of the [code execution tool] in beta, replacing the original Python-only tool with Bash command execution and direct file manipulation capabilities, including writing code in other languages.
+- We launched the [PHP SDK] in beta.
+- We’ve released the [Usage and Cost API], allowing administrators to programmatically monitor their organization’s usage and cost data.
+- We’ve launched [Claude Opus 4.1], an incremental update to Claude Opus 4 with enhanced capabilities and performance improvements. On Opus 4.1, you can specify `temperature` or `top_p`, but not both. Learn more in [Models overview].
+- We’ve launched [fine-grained tool streaming] in beta, a feature that enables Claude to stream tool use parameters without buffering or JSON validation. To enable fine-grained tool streaming, use the [beta header] `fine-grained-tool-streaming-2025-05-14`.
+- We’ve launched the [code execution tool] in beta, a tool that enables Claude to run Python code in a secure, sandboxed environment.
+- You must now specify cache control directly in the parent `content` block of `tool_result` and `document.source`. For backward compatibility, if the API detects cache control on the last block in `tool_result.content` or `document.source.content`, it will automatically apply that cache control to the parent block instead. Cache control on any other blocks within `tool_result.content` and `document.source.content` will result in a validation error.
+- We launched the [Ruby SDK] in beta.
+- We’ve launched an OpenAI-compatible API endpoint, allowing you to test Claude models by changing only your API key, base URL, and model name in existing OpenAI integrations. This compatibility layer supports core chat completions functionality. Learn more in [OpenAI SDK compatibility].
+- We’ve added vision support to Claude Haiku 3.5, enabling the model to analyze images.
+- We’ve released updated versions of our tools that decouple the text editor and bash tools from the computer use system prompt:
+- `bash_20250124`: Same functionality as the previous version, but independent of computer use. Does not require a beta header.
+- `text_editor_20250124`: Same functionality as the previous version, but independent of computer use. Does not require a beta header.
+- `computer_20250124`: Updated computer use tool with new command options including `hold_key`, `left_mouse_down`, `left_mouse_up`, `scroll`, `triple_click`, and `wait`. This tool requires the `computer-use-2025-01-24` beta header.
+- Learn more in [Tool use with Claude].
+- We’ve launched the citations capability in the API, allowing Claude to provide source attribution for information. Learn more in [Citations].
+- [Message Batches API]: Process large batches of messages asynchronously at 50 percent of the standard API cost.
+- [Token counting API]: Calculate token counts for messages before sending them to Claude.
+- [Prompt caching]: Reduce costs by up to 90 percent and latency by up to 80 percent by caching and reusing prompt content.
+- The Message Batches API is now available in beta. Process large batches of queries asynchronously in the Claude API for 50 percent less cost. Read more in [Batch processing].
+- Outputs of 8,192 tokens on Claude Sonnet 3.5 are out of beta and no longer require the `max-tokens-3-5-sonnet-2024-07-15` header.
+- [Prompt caching] is now available as a beta feature in the Claude API. Cache and reuse prompts to reduce latency by up to 80 percent and costs by up to 90 percent.
 
 ## OpenAI API
 
 Source: https://developers.openai.com/api/docs/changelog
 
-- Use [GPT-6 Cyber] to investigate vulnerabilities, reproduce them in an authorized test environment, and verify fixes. See [Daybreak setup] before sending your first request.
-- Released [GPT-Image-2.6 Sunburst] and [GPT-Image-2.6 Flare] for image generation and editing, with adjustable complexity, SVG generation, and animated GIF generation. Added markup-guided editing for supported GPT-Image-2.5 and GPT-Image-2.6 models.
-- [GPT-Live-1] is now generally available in the API. Build full-duplex voice conversations that can continue while a backend model or agent handles reasoning and tools.
-- Released [GPT-Image-2.5 Sunburst] and [GPT-Image-2.5 Flare] for image generation and editing through the Image API and the Responses API image generation tool.
-- Released [GPT-Transcribe] for accurate file transcription and final transcripts of committed Realtime turns, along with [GPT-Live-Transcribe] for low-latency streaming transcription.
-- Released [GPT-5 pro], a version of [GPT-5] that uses more compute to think harder and provide consistently better answers.
-- Released [GPT-4 Turbo preview], [updated GPT-3.5 Turbo], [GPT-4 Turbo with Vision], [Assistants API], [DALL·E 3 in the API], and [text-to-speech API]
-
-## Pages that couldn't be read
-
-- ChatGPT app: couldn't read https://help.openai.com/en/articles/6825453-chatgpt-release-notes (HTTPError: HTTP Error 403: Forbidden)
+- Feature · Model: gpt-live-1.1 · API: v1/live/sessions
+- [GPT-Live-1.1] improves pronunciation, accent consistency, and transcription in multilingual voice conversations. Use `gpt-live-1.1` in an existing Live session configuration and [describe in plain language when to delegate] to your backend.
+- [Configure standby] for GPT-Live-1 and GPT-Live-1.1 WebRTC sessions to pause inference during inactivity and resume when someone speaks.
+- Feature · Model: gpt-6.2-astra · Model: gpt-6.2-sol · API: v1/responses · API: v1/chat/completions
+- Use [GPT-6.2 Astra] for demanding reasoning and coding tasks, or [GPT-6.2 Sol] for everyday coding and agent workflows. Both models support the Responses API and Chat Completions. Tool calling requires the Responses API.
+- GPT-6.2 changes how the Responses API preserves reasoning when you edit a conversation’s prefix and how it handles the top-level `instructions` field. See the [GPT-6.2 migration guide] for details and recommended updates to your integration.
+- Feature · Model: gpt-6.2-astra · Model: gpt-6.2-sol · Model: gpt-6.1-terra · Model: gpt-6-luna · API: v1/responses
+- Choose a two-hour or eight-hour [background completion window] in the Responses API public beta. Model token rates are 30% lower than Standard for the two-hour window and 40% lower for the eight-hour window.
+- New models will not support [Flex processing]. Flex remains available on supported models while the beta winds down.
+- Feature · Model: omni-moderation-csam-latest · API: v1/moderations
+- Approved organizations can use the [OpenAI CSAM Image Classifier] at no cost to help prioritize images for human review. The model returns separate signals for potential child sexual abuse material (CSAM) and potential AI-generated CSAM.
+- Expanded the Sora API with reusable character references, longer generations up to `20` seconds, `1080p` output for `sora-2-pro`, video extensions, and Batch API support for `POST /v1/videos`. `1080p` generations on `sora-2-pro` are billed at `$0.70` per second.
+- Added `POST /v1/videos/edits` for editing existing videos. This will replace `POST /v1/videos/{video_id}/remix`, which will be deprecated in `6` months.
+- Launched `v1/videos` for rich, detailed, and dynamic video generation and remixing with our latest [Sora 2] and [Sora 2 Pro] models.
+- Assistants API now supports including file search results used by the file search tool, and customizing ranking behavior.
+- Added support for file search customizations.
 
 ## Next step
 

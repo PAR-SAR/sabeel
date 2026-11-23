@@ -2,6 +2,17 @@ For the complete documentation index, see [llms.txt]. Markdown versions of docum
 The latest features and updates to the OpenAI API.
 Upcoming deprecations are listed on the [deprecations page].
 November, 2026
+Feature · Model: gpt-live-1.1 · API: v1/live/sessions
+[GPT-Live-1.1] improves pronunciation, accent consistency, and transcription in multilingual voice conversations. Use `gpt-live-1.1` in an existing Live session configuration and [describe in plain language when to delegate] to your backend.
+[Configure standby] for GPT-Live-1 and GPT-Live-1.1 WebRTC sessions to pause inference during inactivity and resume when someone speaks.
+Feature · Model: gpt-6.2-astra · Model: gpt-6.2-sol · API: v1/responses · API: v1/chat/completions
+Use [GPT-6.2 Astra] for demanding reasoning and coding tasks, or [GPT-6.2 Sol] for everyday coding and agent workflows. Both models support the Responses API and Chat Completions. Tool calling requires the Responses API.
+GPT-6.2 changes how the Responses API preserves reasoning when you edit a conversation’s prefix and how it handles the top-level `instructions` field. See the [GPT-6.2 migration guide] for details and recommended updates to your integration.
+Feature · Model: gpt-6.2-astra · Model: gpt-6.2-sol · Model: gpt-6.1-terra · Model: gpt-6-luna · API: v1/responses
+Choose a two-hour or eight-hour [background completion window] in the Responses API public beta. Model token rates are 30% lower than Standard for the two-hour window and 40% lower for the eight-hour window.
+New models will not support [Flex processing]. Flex remains available on supported models while the beta winds down.
+Feature · Model: omni-moderation-csam-latest · API: v1/moderations
+Approved organizations can use the [OpenAI CSAM Image Classifier] at no cost to help prioritize images for human review. The model returns separate signals for potential child sexual abuse material (CSAM) and potential AI-generated CSAM.
 Feature · Model: gpt-6-cyber
 Use [GPT-6 Cyber] to investigate vulnerabilities, reproduce them in an authorized test environment, and verify fixes. See [Daybreak setup] before sending your first request.
 Feature · Model: gpt-image-2.6-sunburst · Model: gpt-image-2.6-flare · API: v1/images/generations · API: v1/images/edits
@@ -182,9 +193,9 @@ GPT-5.4 mini supports [tool search], built-in [computer use], and [compaction]. 
 Update · Model: gpt-5.3-chat-latest
 Fix · Model: gpt-5.4 · API: v1/responses · API: v1/chat/completions
 Feature · Model: sora-2 · Model: sora-2-pro · API: v1/videos · API: v1/videos/characters · API: v1/videos/extensions · API: v1/batch
-Expanded the Sora API with reusable character references, longer generations up to `20` seconds, `1080p` output for `sora-2-pro`, video extensions, and Batch API support for `POST /v1/videos`. `1080p` generations on `sora-2-pro` are billed at `$0.70` per second. Learn more [here].
+Expanded the Sora API with reusable character references, longer generations up to `20` seconds, `1080p` output for `sora-2-pro`, video extensions, and Batch API support for `POST /v1/videos`. `1080p` generations on `sora-2-pro` are billed at `$0.70` per second.
 Update · Model: sora-2 · Model: sora-2-pro · API: v1/videos/edits · API: v1/videos/{video_id}/remix
-Added `POST /v1/videos/edits` for editing existing videos. This will replace `POST /v1/videos/{video_id}/remix`, which will be deprecated in `6` months. Learn more [here].
+Added `POST /v1/videos/edits` for editing existing videos. This will replace `POST /v1/videos/{video_id}/remix`, which will be deprecated in `6` months.
 Feature · Model: gpt-5.4 · Model: gpt-5.4-pro · API: v1/responses · API: v1/chat/completions
 Released [GPT-5.4], our newest frontier model for professional work, to the Chat Completions and Responses API, and released [GPT-5.4 Pro] to the Responses API for tougher problems that benefit from more compute.
 Also released:
@@ -271,7 +282,7 @@ Released several new features at [OpenAI DevDay]:
 Released [GPT-5 pro], a version of [GPT-5] that uses more compute to think harder and provide consistently better answers.
 Released [GPT-Realtime mini] and [gpt-audio-mini] for more cost-efficient speech to speech performance.
 Released [gpt-image-1-mini] for more cost-efficient image generation and editing.
-Launched [v1/videos] for rich, detailed, and dynamic video generation and remixing with our latest [Sora 2] and [Sora 2 Pro] models.
+Launched `v1/videos` for rich, detailed, and dynamic video generation and remixing with our latest [Sora 2] and [Sora 2 Pro] models.
 Launched [Agent Builder] for visually creating custom multi-agent workflows.
 Launched [ChatKit], an embeddable chat interface for deploying agents.
 Released [Trace Evals, Datasets, and Prompt Optimization tools].
@@ -376,7 +387,7 @@ Feature · Model: o1-preview · Model: o1-mini · API: v1/chat/completions
 Released [o1-preview and o1-mini], new large language models trained with reinforcement learning to perform complex reasoning tasks.
 August, 2024
 Feature · API: v1/assistants
-Assistants API now supports [including file search results used by the file search tool, and customizing ranking behavior].
+Assistants API now supports including file search results used by the file search tool, and customizing ranking behavior.
 Feature · Model: gpt-4o · API: v1/fine_tuning
 GA release for [`gpt-4o-2024-08-06` fine-tuning]—all API users can now fine-tune the latest GPT-4o model.
 Update · Model: gpt-4o · API: v1/chat/completions
@@ -390,7 +401,7 @@ Released [GPT-4o mini], our affordable an intelligent small model for fast, ligh
 Released [Uploads] to upload large files in multiple parts.
 [Parallel function calling] can be disabled in Chat Completions and the Assistants API by passing `parallel_tool_calls=false`.
 [.NET SDK] launched in Beta.
-Added support for [file search customizations].
+Added support for file search customizations.
 Added support for [archiving projects] . Only organization owners can access this functionality.
 Added support for [setting cost limits] on a per-project basis for pay as you go customers.
 Released [GPT-4o] in the API. GPT-4o is our fastest and most affordable flagship model.
